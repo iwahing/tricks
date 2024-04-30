@@ -1,0 +1,11 @@
+version: '3'
+
+tasks:
+  run:
+    desc: Run the application
+    cmds:
+      - go run src/main.go
+  tidy:
+    desc: Cleanup
+    cmds:
+      - go mod tidy

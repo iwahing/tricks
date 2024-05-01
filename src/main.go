@@ -10,10 +10,11 @@ func main() {
 	// Datetime manipulation
 	yesterday, _ := utils.GetDateTimestamp("2024-04-29T12:00:00Z")
 	fmt.Println(utils.GetDaysSinceUnixEpoch(yesterday))
-	nineDaysInSeconds := utils.GetSeconds(9)
+	nineDaysInSeconds := utils.GetDaysInSeconds(9)
 	fmt.Println(nineDaysInSeconds)
 	newDate := utils.GetDateBefore(yesterday, nineDaysInSeconds)
-	fmt.Println(utils.UnixTimestampToUTCDateTimeString(newDate))
+	newDateTimestamp, _ := utils.GetDateTimestamp(newDate)
+	fmt.Println(utils.UnixTimestampToUTCDateTimeString(newDateTimestamp))
 
 	// Bitwise
 	fmt.Println(utils.IsEven(241239))

@@ -16,3 +16,8 @@ This should run all tests for given specific directories:
 ```bash
     go test ./tests/... ./unit-tests/... ./my-packages/...
 ```
+
+Generate Test Coverage
+```bash
+    go tool cover -html=<output_filename>
+```

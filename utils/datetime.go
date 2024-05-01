@@ -1,22 +1,13 @@
 package utils
 
 import (
+	"errors"
 	"fmt"
 	"time"
 )
 
-// CustomError is a custom error type
-type CustomError struct {
-	message string
-}
-
-// Error returns the error message
-func (e *CustomError) Error() string {
-	return e.message
-}
-
-func GetSeconds(days int64) int64 {
-	return (days * 3600)
+func GetDaysInSeconds(days int64) int64 {
+	return (days * 86400)
 }
 
 func GetDaysSinceUnixEpoch(timestamp int64) int64 {
@@ -28,14 +19,14 @@ func GetDateTimestamp(datetime string) (int64, error) {
 	date, err := time.Parse(time.RFC3339, datetime)
 	if err != nil {
 		fmt.Println("Error parsing datetime:", err)
-		return 0, &CustomError{"Error parsing datetime:"}
+		return 0, errors.New("cannot parsing datetime. format must be in RFC3339")
 	}
 
 	return date.Unix(), nil
 }
 
-func GetDateBefore(dateTimestamp int64, days_in_second int64) int64 {
-	return dateTimestamp - days_in_second
+func GetDateBefore(dateTimestamp int64, seconds int64) string {
+	return UnixTimestampToUTCDateTimeString(dateTimestamp - seconds)
 }
 
 func UnixTimestampToUTCDateTimeString(timestamp int64) string {
